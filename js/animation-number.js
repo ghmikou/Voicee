@@ -1,4 +1,4 @@
-function cAnimate(id, start, end, frameDelay = 100, mul = 1.2) {
+function cAnimate(id, start, end, frameDelay = 100, mul = 1.1) {
     var obj = document.getElementById(id);
     var increment = 2;
     var current = start;
@@ -9,10 +9,19 @@ function cAnimate(id, start, end, frameDelay = 100, mul = 1.2) {
             current = end;
             clearInterval(timer);
         }
-
-        obj.innerHTML = Math.floor(current).toLocaleString();
+        
+        obj.innerHTML = Math.floor(current).toLocaleString() + " €";
 
     }, frameDelay);
 }
+window.onscroll = function() {myFunction()};
+var counter = 0
+function myFunction() {
+  if ((document.body.scrollTop > 1500 || document.documentElement.scrollTop > 1500) && counter < 1) {
+    cAnimate("toto", 0, 199, 50);
+    cAnimate("toto1", 0, 499, 50);
+    cAnimate("toto2", 0, 1999, 50)
+    counter += 1
+  }
+}
 
-cAnimate("price-value", 1, 260000, 50);
